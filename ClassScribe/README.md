@@ -42,7 +42,7 @@ the "structure" notation. Note that this example is not really realistics:
 * most of the time only a few of the possibilities will be used
 * usually the same level of notation will be used for all elements, for 
 instance specifying only the name and the visibility and the type.
-
+Here is the example:
     Employee
      salary : i[0..1]
      
@@ -67,10 +67,6 @@ Sometimes it is convenient to create hierarchies of classes and interfaces
 
 Specification: TODO
 
-Hints
-* "i" stands for "interface"
-* "a" stands for "abstract"
-
     Person
       Men
       Women
@@ -78,4 +74,8 @@ Hints
       Student
         FirstYearStudent
         MasterStudent
+        
+Hints
+* "i" stands for "interface"
+* "a" stands for "abstract"
     
