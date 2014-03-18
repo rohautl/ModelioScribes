@@ -8,16 +8,16 @@ Syntax
 The syntax is based on nesting and simple line commands. Blank lines are ignored as well as separator lines containing only "*" or "=" or "-" and spaces. Lines starting with -- are comments and are ignored as well.
 
 * At the top-level:
-  * <NameA> : create/modify an actor
-  * <NameA> < <NameB> : create/modify an actor NameA inheriting from an actor NameB. Actors are created or reused if they already exist.
-  * <NameA1>,<NameA2>...<NameAn> - <NameCU> : create/modify a use case and associate it with the corresponding actors. The actors are created if necessary. Association between actors and use cases are merged with previous one if already existing.
+  * NameA : create/modify an actor
+  * NameA \< NameB : create/modify an actor NameA inheriting from an actor NameB. Actors are created or reused if they already exist.
+  * NameA1,NameA2...NameAn - NameCU : create/modify a use case and associate it with the corresponding actors. The actors are created if necessary. Association between actors and use cases are merged with previous one if already existing.
 * In the context of use cases:
-  * <NameC> : create/modify a collaboration named NameC
-  * "t->" <NameC> : create a tracability link towards the model element NameC if it exist. If this model element does not exist, then a warning is issued.
+  * NameC : create/modify a collaboration named NameC
+  * "t->" NameC : create a tracability link towards the model element NameC if it exist. If this model element does not exist, then a warning is issued.
 * In the context of actors, use cases or collaborations:
-  * "#s" <text> : create/modify the "summary" note (it is assumed that there at most one)
-  * "#d" <text> : create/modify the "description" note (it is assumed that there at most one)
-  * "# " <text> : append a space to the previous note
+  * "#s" SomeText : create/modify the "summary" note (it is assumed that there at most one)
+  * "#d" SomeText : create/modify the "description" note (it is assumed that there at most one)
+  * "# " SomeText : append a space to the previous note
 
 Examples
 --------
