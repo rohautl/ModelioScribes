@@ -43,6 +43,7 @@ the "structure" notation. Note that this example is not really realistics:
 * usually the same level of notation will be used for all elements, for 
 instance specifying only the name and the visibility and the type.
 Here is the example:
+
     Employee
      salary : i[0..1]
      
