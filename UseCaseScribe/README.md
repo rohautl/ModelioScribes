@@ -22,16 +22,16 @@ The general conventions are the following ones:
 
 The notation is based on nesting of simple line commands.   
 * At the *top-level*:  
-  * **NameA** : create/modify an actor.
-  * **NameA \< NameB** : create/modify an actor NameA inheriting from an actor NameB. Actors are created or reused.
-  * **NameA1,NameA2...NameAn - NameCU** : create/modify a use case and associate it with the corresponding actors. Actors are created or reused. Association between actors and use cases are merged with previous ones if already existing.
+  * **NameA** : Create/modify an actor.
+  * **NameA \< NameB** : Create/modify an actor NameA inheriting from an actor NameB. Actors are created or reused.
+  * **NameA1,NameA2...NameAn - NameCU** : Create/modify a use case and associate it with the corresponding actors. Actors are created or reused. Association between actors and use cases are merged with previous ones if already existing.
 * In the context of *use cases*:
-  * **NameC** : create/modify a collaboration named NameC
-  * **"t->" NameC** : create a tracability (hence "t->") dependency towards the model element NameC if it exist. The element is first search in the "analyst project", and then in the "uml project".If this model element does not exist or various element with the same name exists, then a warning is issued but the process is not stopped.
+  * **NameC** : Create/modify a collaboration named NameC
+  * **t-> NameC** : Create a tracability (hence "t->") dependency towards the model element NameC if it exist. The element is first search in the "analyst project", and then in the "uml project".If this model element does not exist or various element with the same name exists, then a warning is issued but the process is not stopped.
 * *In the context of actors, use cases or collaborations*:
-  * **#s SomeText** : create/modify the "summary" note (it is assumed that there at most one)
-  * **#d" SomeText** : create/modify the "description" note (it is assumed that there at most one)
-  * **#  SomeText** : append a text to the previous note. Note that a space should follow the "#" character.
+  * **#s SomeText** : Create/modify the "summary" note (it is assumed that there at most one)
+  * **#d" SomeText** : Create/modify the "description" note (it is assumed that there at most one)
+  * **#  SomeText** : Append a text to the previous note. Note that a space should follow the "#" character.
 
 SUCN Examples
 --------------
@@ -76,8 +76,8 @@ Usage
 UseCaseScribe provides two import commands and one export command. The two import commands operates on a "selected" package (the selection refering here to modelio selection). The selected package will be the place where new elements are going to be created. Existing elements will stay in their place (see the note below). 
 
 The three commands are the following:
-** "Import use cases from file": this command must be run on a selected package and a file name in the SUCN notation must be specified.
-** "Import use cases": this command is similar but a input window is open where SUCN notation can be input. Pressing a button OK allows to create use case elements.
-** "Export use cases": this command generate a file for all actors, use cases nd collaborations that are in the selected package (recursively) or if no package is selected that are in the UML project.  
+* "Import use cases from file": this command must be run on a selected package and a file name in the SUCN notation must be specified.
+* "Import use cases": this command is similar but a input window is open where SUCN notation can be input. Pressing a button OK allows to create use case elements.
+* "Export use cases": this command generate a file for all actors, use cases and collaborations that are (recursively) in the selected package or if no package is selected that are in the UML project.  
 
 IMPORTANT NOTE: It is assumed that actors and use cases names are global. So if existing actors or use cases have already the same names as the ones found in the model (or the same uuid if any) during an import, then these entities will be modified in the place where they are. This avoid package qualification which could be quite cumbersome in practice. It is still possible to create sophisticated structures by to first importing use cases and actors in a blank model, to create various packages and move elements in it. When the elements will be imported again, they will stay in the same package, except newly created elements that will go into the "selected" package.
