@@ -1,16 +1,30 @@
-OCLScribe 
+OCLScribe
 =========
-This script allows the generation of an USE OCL textual syntax from a modelio model. It also inclused a reverse engineering feature allowing to create a modelio model from a ocl model. 
+Generation of some USEOCL model from an Modelio model.
+ 
+Licence: GPL
+Author: oussama -  main developer
+Author: jmfavre - design, refactoring and packaging
 
-Forward engineering of the model
---------------------------------
-The structural part of the model (class, attribute, operation, association) is used to generate the structure of the USE OCL model. Notes are used in modelio to describe the OCL constraints (preconditions, postconditions, invariants). These constraints are generated in the output in the right place according to the context of the note.
+Compatibility: Modelio 3.x
 
-Reverse engineering of the model
---------------------------------
-To avoid building a full parser for USE OCL syntax, the reverse engineering feature is based on the command "help model" of use ocl. This command flushes in a standard formatted way the content of a model. This methods present the following drawbacks:
-* all comments are lost
-* formatting is lost. This is not a problem for the structure but all constraints are on a single line.
-* some variables are introduced in the constraints. The representation corresponds to an internal representation
+Description
+-----------
+This macros generates a USEOCL model from a given model.
+Currently the text is generated in a html window.
 
+Installation
+------------
+This script should be installed using the standard modelio procedure to add a macro.
+It can be installed in any directory but the HOME variable must be set
+(see the beginning of this file).
+This script use the content of the "modules" directory so that it should not be removed.
+
+History
+-------
+* Version 1.1 - March 20,2014 - jmfavre
+   * first refactoring
+   * first packaging
+* Version 1.0 - Jani-uary 12, 2014 - oussama
+   * initial delivery
 
