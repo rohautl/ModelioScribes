@@ -42,69 +42,69 @@ The syntax of the SCN notation is line-based, identation based but each line can
 
 In the context of a **package**, classes or enumerations can be created as following:
 
-    <DefineClass>           ::= <Stereotype>* <Abstract>? <Name>
-        -- Creates/modify the class <Name>
-    <DefineInheritingClass> ::= <Stereotype>* <Abstract>? <Name> "<" <Name>+
-        -- Creates/modify the class <Name>, creates the syper classes if necessary and creates
-        -- generalization relationships if necessary
-    <DefineEnumeration>     ::= <Stereotype>* "e" <Name>
-        -- Creates/modify an enumeration
+      <DefineClass>           ::= <Stereotype>* <Abstract>? <Name>
+          -- Creates/modify the class <Name>
+      <DefineInheritingClass> ::= <Stereotype>* <Abstract>? <Name> "<" <Name>+
+          -- Creates/modify the class <Name>, creates the syper classes if necessary and creates
+          -- generalization relationships if necessary
+      <DefineEnumeration>     ::= <Stereotype>* "e" <Name>
+          -- Creates/modify an enumeration
 
 In the context of an **enumeration**, enumeration literals can be created as following:
 
-    <DefineEnumerationLiteral> ::= <Stereotype>* <Name>
-        -- Creates/modify an enumeration literal
+      <DefineEnumerationLiteral> ::= <Stereotype>* <Name>
+          -- Creates/modify an enumeration literal
 
 In the context of a **class**, attributes, operations or roles can be created as following:
 
-    <DefineAttribute> ::= <Stereotype>* <Derived>? <Visibility>? <Name> (":" <TypeSpec>)?
-        -- Creates/modify an attribute
-    <DefineOperation> ::= <Stereotype>* <Abstract?> <Derived>? <Visibility>? <Name> "()"
-        -- Creates/modify an operation
-    <DefineRole>      ::= <Stereotype>* <Derived>? <Visibility>? <RoleSpec>
-        -- Creates/modify a role
+      <DefineAttribute> ::= <Stereotype>* <Derived>? <Visibility>? <Name> (":" <TypeSpec>)?
+          -- Creates/modify an attribute
+      <DefineOperation> ::= <Stereotype>* <Abstract?> <Derived>? <Visibility>? <Name> "()"
+          -- Creates/modify an operation
+      <DefineRole>      ::= <Stereotype>* <Derived>? <Visibility>? <RoleSpec>
+          -- Creates/modify a role
 
 In the context of an **operation**, parameters can be defined as following:
 
-    <DefineParameter> ::= <Stereotype>* <Name> ":" <ParameterType>?
-        -- Create/modify a parameter
+      <DefineParameter> ::= <Stereotype>* <Name> ":" <ParameterType>?
+          -- Create/modify a parameter
     
 The definitions above are based on the following elements:
 
-    <RoleSpec>        ::= (<RoleKind>)? <Name> ":" <Name> <Cardinality>? ("inv" <Name> <Cardinality>?)? 
-        -- The first name is the name of the "source" role to be created or modified in the current class.
-        -- The second name is the name of the target class. The third name if it exists is the name of
-        -- the "inverse" role in this target class. 
-        -- TODO. This specification should be refined to explain what happen if the role already exists.
-        
-    <Composition>     ::= "<#>"
-    <Aggregation>     ::= "<>"
-    
-    <TypeSpec>        ::= <TypeName> <Cardinality>?
-        -- If not specified the cardinality is set to [1]
-        
-    <Cardinality>     ::= "[*]" | "[" <Integer> ".." <Integer> "]" | "[" <Integer> ".." "*" ]
-    
-    <TypeName>        ::= <BasicType> | <Name>  -- an error is generated if 
-        -- The type name must already exist in the model. Otherwise an error is generated.
+      <RoleSpec>        ::= (<RoleKind>)? <Name> ":" <Name> <Cardinality>? ("inv" <Name> <Cardinality>?)? 
+          -- The first name is the name of the "source" role to be created or modified in the current class.
+          -- The second name is the name of the target class. The third name if it exists is the name of
+          -- the "inverse" role in this target class. 
+          -- TODO. This specification should be refined to explain what happen if the role already exists.
 
-    <BasicType>       ::= "integer" | "i"       -- i is a shortcut
-                        | "float"   | "f"       -- f is a shortcut
-                        | "boolean" | "b"       -- b is a shortcut
-                        | "date"    | "d"       -- d is a shortcut
-                        | "string"  | "s"       -- default if no type is defined yet for the element
-    
-    <Abstract>        ::= "a" | "abstract"
-    
-    <Derived>         ::= "/"
-    
-    <Visibility>      ::= "+"                   -- public
-                        | "~"                   -- package
-                        | "#"                   -- protected
-                        | "-"                   -- private 
-    
-    <Name>            ::=   -- a non empty sequence of letters, digits, "_" without any space
-    <Stereotype>      ::=   -- like <Name> but with enclosed in "<" and ">"
+      <Composition>     ::= "<#>"
+      <Aggregation>     ::= "<>"
+      
+      <TypeSpec>        ::= <TypeName> <Cardinality>?
+          -- If not specified the cardinality is set to [1]
+          
+      <Cardinality>     ::= "[*]" | "[" <Integer> ".." <Integer> "]" | "[" <Integer> ".." "*" ]
+      
+      <TypeName>        ::= <BasicType> | <Name>  -- an error is generated if 
+          -- The type name must already exist in the model. Otherwise an error is generated.
+
+      <BasicType>       ::= "integer" | "i"       -- i is a shortcut
+                          | "float"   | "f"       -- f is a shortcut
+                          | "boolean" | "b"       -- b is a shortcut
+                          | "date"    | "d"       -- d is a shortcut
+                          | "string"  | "s"       -- default if no type is defined yet for the element
+      
+      <Abstract>        ::= "a" | "abstract"
+      
+      <Derived>         ::= "/"
+      
+      <Visibility>      ::= "+"                   -- public
+                          | "~"                   -- package
+                          | "#"                   -- protected
+                          | "-"                   -- private 
+      
+      <Name>            ::=   -- a non empty sequence of letters, digits, "_" without any space
+      <Stereotype>      ::=   -- like <Name> but with enclosed in "<" and ">"
                                            
 
 ### SCN Examples
