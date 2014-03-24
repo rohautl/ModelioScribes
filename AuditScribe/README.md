@@ -18,7 +18,6 @@ Conceptually the audit configuration is based on the following concepts (each co
 * "name": the name of the [Rule].
 * "where": this attribute either refers to a name of a metaclass  or to a [ModelLocation]. In the first case the name of the metaclass is simply given and all elements of this metaclass will be checked. Otherwise if the value is starting with a "#" character, what remains is the name of a [ModelLocation] giving the details about which elements have to be checked (see below).
 * "level": an optional the severity level of the [Rule]. One of the following values: "error", "warning", or "advice". "Warning" is the default value.
-indicates on which model elements the [Rule] should be applied. This could be for instance all "Class"es with a given stereotype and with a name matching a given regular expression. See below for more information on the "where" clause.
 * "message": a optional message that is produced when the [Rule] is not satisfied.
 * "url": an optional URL providing more information about the [Rule].
 
