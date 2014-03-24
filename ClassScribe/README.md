@@ -17,7 +17,7 @@ SCN Notation
 ------------
 
 ### Context and nesting 
-The elements created are always created into container element called referred as the "context". The context defines which (nested) elements can be created in it. For instance in the context of a package, classes can be created just by giving the list of names. In the context of a class, one can attributes, operations and roles. If only names are given it is assumed that attributes are to be created. Otherwise the syntax of the line differs in order to indicate which kind of elements is to be created. For instance the name of an operation will be followed by ().
+The elements created are always created into container element called referred as the "context". The context defines which (nested) elements can be created in it. For instance in the context of a package, classes can be created just by giving the list of names. In the context of a class, one can attributes, operations and roles. If only names are given it is assumed that attributes are to be created. Otherwise the syntax of the line differs in order to indicate which kind of elements is to be created. For instance the name of an operation will be followed by "()".
 
 The "root context" corresponds to the first selected elements of modelio. Toplevel elements in the textual notation are going to be created there. Nesting in the notation then indicates the context of each element to be created. The root context can be of different types indicating the type of the elements to be created on the top level. For instance if the import operation is applied on a package then a list of names at the top level will be interpreted as a list of class, but if the import operation is applied on a class, then the list of names at the top level will be interpreted as attributes. 
 
@@ -27,17 +27,17 @@ The syntax of the SUCN notation is based on simple line commands that are nested
 The general conventions are the following ones:
 * Blank lines are ignored.
 * Nesting is done via two spaces.
-* Lines starting with "--" are comments and are ignored as well.
+* Lines starting with "--" are comments .
 * If a line is terminated with "..." and then a uuid, then this is the uuid associated with the current element.
 * If a name of an element appears for the first time in the text and it does not exist in the model, then the element is created. Otherwise the element is modified. If an uuid is indicated for an element, then the search is based on this uuid instead of its name. Note that elements with uuid stay in their place and are never moved by this script.
 
 The syntax of the SCN notation is line-based, identation based but each line can be specified as shown below. The following conventions are taken:
-* <X> introduce a non terminal symbols
+* \<X> introduce a non terminal symbols
 * "..." are terminal symbols
 * ( ... ) define groups of elements
-* ...? represent an optional element
-* ...* represent a repetition of zero or more elements
-* ...+ represent a repetition of one or more elements
+* ...? represents an optional element
+* ...* represents a repetition of zero or more elements
+* ...+ represents a repetition of one or more elements
 * -- are comments
 
 In the context of a **package**, classes or enumerations can be created as following:
@@ -119,11 +119,11 @@ Here is the example:
     Student < organization.Person, university.Stakeholder
       firstName      
       lastName : s
-        #s: This is a "summary" note (because it startswith #s:) 
-        #d: Here this is a multi line description
+        's: This is a "summary" note (because it startswith #s:) 
+        'd: Here this is a multi line description
           : with multiple line as expected. They are contactenated 
           : together. So there are three lines in total.
-        #d: Now this another "description" note
+        'd: Now this another "description" note
       +middleName : string [0..1]
       birthDate:d
       <PK> nationalId
