@@ -108,22 +108,22 @@ The definitions above are based on the following elements:
                                            
 
 ### SCN Examples
-The following example provides a complete view of the various possibility of the "structure" notation. Note that this example is not really realistics:
+The following example provides a complete view of the various possibilities of the "structure" notation. Note that this example is not really realistics:
 * most of the time only a few of the possibilities will be used
 * usually the same level of notation will be used for all elements, for instance specifying only the name and the visibility and the type.
 
-Here is the example:
+Here is a first example:
 
     Employee
       salary : i [0..1]   
     Student < organization.Person, university.Stakeholder
       firstName      
       lastName : s
-        's: This is a "summary" note (because it startswith #s:) 
-        'd: Here this is a multi line description
-          : with multiple line as expected. They are contactenated 
-          : together. So there are three lines in total.
-        'd: Now this another "description" note
+        S: This is a "summary" note (because it startswith #s:) 
+        D: Here this is a multi line description
+         : with multiple line as expected. They are contactenated 
+         : together. So there are three lines in total.
+        D: Now this another "description" note
       +middleName : string [0..1]
       birthDate:d
       <PK> nationalId
@@ -133,10 +133,8 @@ Here is the example:
 
 The examples below illustrate the use of the notation in different contexts.
 
-TODO: Create some examples
-
-      
-      
+TODO: Create more examples
+ 
       
 SCIN Notation
 -------------
@@ -166,7 +164,7 @@ Hints
     
 User interface
 --------------
-From a very concrete point of view the user interface provides three "commands": one interactive command and file-based commands:
+The user interface provides three "commands": one interactive command and two file-based commands:
 
 * **Import class model**. This command must be launched on a selected package or class and a file name in the SCN notation must be specified. The notion of "selection" refers here to modelio selection. Elements are read form the file. The selected element is the place where new elements are going to be created. 
 * **Export class model**. This command generates a file for all class model elements that are (recursively) in the selected element. The output file name should be specified.
