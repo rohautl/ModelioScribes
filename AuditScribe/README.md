@@ -76,4 +76,4 @@ TODO: a xml formet should be defined for rules and examples should be provided
 
 Interface
 ---------
-TODO: to be defined
+TODO: to be defined. See for instance ClassScribe/UseCaseScribe for an illustration. 

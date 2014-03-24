@@ -6,7 +6,7 @@ Modelio requirements
 --------------------
 This script works both with the commercial and open source version of modelio.
 * In the commercial version the "Analyst" metamodel is used. This metamodel already contains the notion of requirement.
-* In the open source version a "Requirement" profile is created in the local module (or reused if it exist already).
+* In the open source version the "Requirement" profile is created in the local module (or reused if it exist already).
          
 Requirement profile
 -------------------
@@ -33,19 +33,20 @@ SRN Example
 TODO: to be completed. Attributes of requirements should be added as well as dependencies.
 
     Functional NameOfRequirement1 
-      This is the first line of the definition.
-      This is the second line of the definition of the requirement NameOfRequirement1.
-      It can therefore be on multiple lines.
+      : This is the first line of the definition.
+      : This is the second line of the definition of the requirement NameOfRequirement1.
+      : It can therefore be on multiple lines.
     Performance NameOfRequirement2
-      Only a line for the definition
-      "d Now this is a "description" note on the requirment.
-      "  this definition is on two lines.
+      : Only a line for the definition
+      D: Now this is a "description" note on the requirment.
+       : this definition is on two lines.
     Paclage MyPackage1
       Security Req3 
-        This definition refers to [Term1] and [Term2].
-        "s This a "summary" note
+        : This definition refers to [Term1] and [Term2].
+        S: This a "summary" note
 
 
 
 User interface
 --------------        
+TODO: to be defined. See for instance ClassScribe/UseCaseScribe for an illustration. 
