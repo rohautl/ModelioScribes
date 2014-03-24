@@ -27,7 +27,6 @@ The syntax of the SUCN notation is based on simple line commands that are nested
 The general conventions are the following ones:
 * Blank lines are ignored.
 * Nesting is done via two spaces.
-* Separator lines are ignored. These are lines containing only "*" or "=" or "-" and spaces. 
 * Lines starting with "--" are comments and are ignored as well.
 * If a line is terminated with "..." and then a uuid, then this is the uuid associated with the current element.
 * If a name of an element appears for the first time in the text and it does not exist in the model, then the element is created. Otherwise the element is modified. If an uuid is indicated for an element, then the search is based on this uuid instead of its name. Note that elements with uuid stay in their place and are never moved by this script.
@@ -42,6 +41,7 @@ The syntax of the SCN notation is line-based, identation based but each line can
 * -- are comments
 
 In the context of a **package**, classes or enumerations can be created as following:
+
     <DefineClass>           ::= <Stereotype>* <Abstract>? <Name>
         -- Creates/modify the class <Name>
     <DefineInheritingClass> ::= <Stereotype>* <Abstract>? <Name> "<" <Name>+
@@ -51,10 +51,12 @@ In the context of a **package**, classes or enumerations can be created as follo
         -- Creates/modify an enumeration
 
 In the context of an **enumeration**, enumeration literals can be created as following:
+
     <DefineEnumerationLiteral> ::= <Stereotype>* <Name>
         -- Creates/modify an enumeration literal
 
 In the context of a **class**, attributes, operations or roles can be created as following:
+
     <DefineAttribute> ::= <Stereotype>* <Derived>? <Visibility>? <Name> (":" <TypeSpec>)?
         -- Creates/modify an attribute
     <DefineOperation> ::= <Stereotype>* <Abstract?> <Derived>? <Visibility>? <Name> "()"
@@ -63,10 +65,12 @@ In the context of a **class**, attributes, operations or roles can be created as
         -- Creates/modify a role
 
 In the context of an **operation**, parameters can be defined as following:
+
     <DefineParameter> ::= <Stereotype>* <Name> ":" <ParameterType>?
         -- Create/modify a parameter
     
 The definitions above are based on the following elements:
+
     <RoleSpec>        ::= (<RoleKind>)? <Name> ":" <Name> <Cardinality>? ("inv" <Name> <Cardinality>?)? 
         -- The first name is the name of the "source" role to be created or modified in the current class.
         -- The second name is the name of the target class. The third name if it exists is the name of
