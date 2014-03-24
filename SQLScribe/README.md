@@ -1,11 +1,11 @@
 SQLScribe
 =========
-This script allows the generation and reverse engineering of SQL from a database. The reverse engineering part is based on the SchemaSpy open source tool.
+This script allows the generation of SQL from class models and the other way around the reverse engineering of class models from a database. The reverse engineering part is based on the SchemaSpy open source tool.
 
-Two levels of abstration
-* Conceptual model
-* Relational model
-* 
+Three levels of abstration are supported:
+* Data model: at this level classes are representing persistent entities. Associations and inheritance  are used to model the relationhips between these entities.
+* Relational model: this level based on "SQL" profile desribe tables with stereotype classes. This level introduce the notion ok primary key and foreign keys are represented by dependencies between columns. 
+* SQL Implementation: this level corresponds to the SQL code containing statements of form of "CREATE TABLE", etc. 
 
 SQL Reverse Engineering (SQLScribeRev)
 --------------------------------------
