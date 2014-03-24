@@ -31,6 +31,8 @@ Test cases
  * (1) reverse the database with SchemaSpy to produce a .xml
  * (2) test the SQLScribeRev reverse engineering tool
 
+ The following example corresponds to a (subset) of the library example:
+ 
     <database name="library" type="MySQL - 5.1.35-community">
       <tables>
         <table name="address" numRows="9" remarks="Address details" type="TABLE">
@@ -64,7 +66,7 @@ Test cases
     </database>
     
 Relational Profile
------------
+------------------
 Definition of an relational profile within the local module
 * initialisation
  * if the stereotype are not existing creating them
