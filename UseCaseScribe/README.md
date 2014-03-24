@@ -1,6 +1,6 @@
 UseCaseScribe
 =============
-This script aims to simplify the input of use case models in Modelio. The "import" operations transform text written in a "Simple Use Case Notation" (SUCN) into use case elements (actors, use cases, notes, etc.). On the other way around the "export" operation consists in generating a SUCN text from an existing model.
+This script aims to simplify the input of use case models in Modelio. The "import" operation transforms a text written in a "Simple Use Case Notation" (SUCN) into use case elements (actors, use cases, notes, etc.). On the other way around the "export" operation consists in generating a SUCN text from an existing model.
 
 Import and export operations
 ----------------------------
@@ -15,8 +15,7 @@ The syntax of the SUCN notation is based on simple line commands that are nested
 The general conventions are the following ones:
 * Blank lines are ignored.
 * Nesting is done via two spaces.
-* Separator lines are ignored. These are lines containing only "*" or "=" or "-" and spaces. 
-* Lines starting with "--" are comments and are ignored as well.
+* Lines starting with "--" are comments.
 * If a line is terminated with "..." and then a uuid, then this is the uuid associated with the current element.
 * If a name of an element appears for the first time in the text and it does not exist in the model, then the element is created. Otherwise the element is modified. If an uuid is indicated for an element, then the search is based on this uuid instead of its name. Note that elements with uuid stay in their place and are never moved by this script.
 
@@ -40,14 +39,14 @@ Here is an example of SUCN text that can be used to create a blank model:
     -- this is an example of comment
     Actor5
     Actor1
-      #s: This is the "summary" note associated with Actor1.
-      #d: And now a "description" note. Actors does not have
-        : to be declared unless notes have to be attached with them
-        : or they have inheritance relationships. Otherwise
-        : they are declared "online" when found
+      S: This is the "summary" note associated with Actor1.
+      D: And now a "description" note. Actors does not have
+       : to be declared unless notes have to be attached with them
+       : or they have inheritance relationships. Otherwise
+       : they are declared "online" when found
     Actor8  
     Actor4
-      #s: the summary of Actor4
+      S: The summary of Actor4
     
     Actor6 - UseCase3
     Actor6 - UseCase4
@@ -58,22 +57,21 @@ Here is an example of SUCN text that can be used to create a blank model:
     Actor2 - UseCase2    
      
     Actor1 - UseCase1
-      #s: This is the "summary" of UseCase1 because "s" stands for summary.
-      #d: This is the "description" note attached to UseCase1.
-      #   This note has various lines as each line is
-      #   appended with the previous note if it starts with '" ' (note the presence of a space).
-      #d: This is another description starting here as the note type is given ("d" here)
+      S: This is the "summary" of UseCase1 because "s" stands for summary.
+      D: This is the "description" note attached to UseCase1.
+       : It has two lines as this is the continuation of the previous note.
+      D: This is another description starting here.
       -- here comes a definition of a traceability link towards an existing element
       -- if the element does not exist a warning is issued
       t-> AnNamedElementOfWhateverType
       Collaboration11
-        #s: This is the "summary" of the Collaboration11
+        S: This is the "summary" of the Collaboration11
         
       Collaboration12
-        #s: This is the "summary" of Collaboration12
-        #d: This is the "description" 
-          : and it continues on
-          : multiple lines.
+        S: This is the "summary" of Collaboration12
+        D: This is the "description" 
+         : and it continues on
+         : multiple lines.
       Collaboration13
       
 
