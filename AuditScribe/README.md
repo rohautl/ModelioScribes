@@ -1,12 +1,12 @@
 AuditScribe
 ===========
-This script provides a framework to check modeling rules on existing models. The modeling rules are defined in a .xml configuration file in a rather gener. Some rule are predefined yet parametrable. Some other can be implemented as jython method. The intention of these rules is to complement those already checked by modelio with rules defining different modeling styles, naming conventions, methods, etc. The level of severity of each rule (error, warning, advice) can be configured as well as the elements on which each rule should be checked.
+This script provides a framework to check modeling rules on existing models. The modeling rules are defined in a .xml configuration file in a rather genereric way. Some rules are predefined yet parametrable. Some other can be implemented as jython methods. The intention of all these rules is to complement those already checked by modelio with rules defining different modeling styles, naming conventions, methods, etc. The level of severity of each rule (error, warning, advice) can be configured as well as the elements on which each rule should be checked.
 
 Rule structure
 --------------
 Conceptually the audit configuration is based on the following concepts (each concept is later defined in a separate subsection):
 * Rule: the abstract concept corresponding to a rule in general.
-* NamingRule: naming rules allows to check if the name of a model element matches a regular expression.
+* NamingRule: naming rules allow to check if the name of a model element matches a regular expression.
 * JythonRule: this abstract concept corresponds to all rule implemented in jython.
 * JythonBooleanRule: a JythonBooleanRule is implemented by a jython predicate indicating whether the rule is satisfyied or not.
 * JythonMetricRule: a JythonNumericRule is implemented by a jython function returning an integer. The integer must be lower/greater than a constant provided or within a given range.
@@ -16,14 +16,14 @@ Conceptually the audit configuration is based on the following concepts (each co
 ### Rule
 [Rule]s is an abstract concept. This the main top-level concept. [Rule] being an abstract concept it cannot be instanciated and serve only for its sub classes. Attributes common to all rules are the following:
 * "name": the name of the [Rule].
-* "where": this attribute either refer to a name of a metaclass  or to a [ModelLocation]. In the first case the name of the metaclass is simply given and all elements of this metaclass will be checked. Otherwise if the value is starting with a "#" character, what remains is the name of a [ModelLocation] giving the details about which elements have to be checked (see below).
+* "where": this attribute either refers to a name of a metaclass  or to a [ModelLocation]. In the first case the name of the metaclass is simply given and all elements of this metaclass will be checked. Otherwise if the value is starting with a "#" character, what remains is the name of a [ModelLocation] giving the details about which elements have to be checked (see below).
 * "level": an optional the severity level of the [Rule]. One of the following values: "error", "warning", or "advice". "Warning" is the default value.
 indicates on which model elements the [Rule] should be applied. This could be for instance all "Class"es with a given stereotype and with a name matching a given regular expression. See below for more information on the "where" clause.
 * "message": a optional message that is produced when the [Rule] is not satisfied.
 * "url": an optional URL providing more information about the [Rule].
 
 ### NamingRule
-[NamingRule]s are concete rules. Their behavior consist in checking if the name of the model element match a given regular expression. If not the rule is not satisfied. 
+[NamingRule]s are concrete rules. The behavior of a named rule consists in checking if the name of the model element match a given regular expression. If not the rule is not satisfied. 
 
 Additionally to the attributes of [Rule]s, [NamingRule]s  include the following attributes:
 * "regExpr": the regular expression to be checked on the name of the model element or a reference to a [RegExpr]. If the first character of this attribute is a "#" character, if it is followed by a CamlCase identifier, and if it corresponds to the name of [RegExpr] then the  regexpr is used. 
