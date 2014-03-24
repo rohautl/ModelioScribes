@@ -29,8 +29,8 @@ The notation is based on nesting of simple line commands (a name is specified fo
   * **NameC** (*DefineCollaboration*): Create/modify a collaboration named NameC
   * **t-> NameC** (*DefineTraceability*): Create a traceability (hence "t->") dependency towards the model element NameC if it exist. The element is first search in the "analyst project", and then in the "uml project".If this model element does not exist or various element with the same name exists, then a warning is issued but the process is not stopped.
 * In the context of **actors**, **use cases** or **collaborations**:
-  * **"s SomeText** (*DefineSummary*): Create/modify the "summary" note. If an uuid is specified, then the note is identified and its content is changed with the text provided. Otherwise as it is important to avoid creating multiple descriptions each time the model is imported, it is assumed that the definition to be modified is the first one if any and in this case its content is replaced by the text provided.
-  * **"d" SomeText** (*DefineDescription*): Create/modify the "description" note. The behavior is analogous to the one described for summary notes. 
+  * **#s SomeText** (*DefineSummary*): Create/modify the "summary" note. If an uuid is specified, then the note is identified and its content is changed with the text provided. Otherwise as it is important to avoid creating multiple descriptions each time the model is imported, it is assumed that the definition to be modified is the first one if any and in this case its content is replaced by the text provided.
+  * **#d" SomeText** (*DefineDescription*): Create/modify the "description" note. The behavior is analogous to the one described for summary notes. 
   * **"  SomeText** (*DefineAdditionalText*): Append a text to the previous note. Note that a space should follow the '"' character.
 
 SUCN Examples
@@ -78,7 +78,7 @@ Here is an example of SUCN text that can be used to create a blank model:
       
 
 Interface
----------
+--------
 
 The user interface  provides three "commands": one interactive command and file-based commands:
 * **Import use case model**. This command must be launched on a selected package and a file name in the SUCN notation must be specified. The notion of "selection" refers here to modelio selection. Elements are read form the file. The selected package will be the place where new elements are going to be created. Existing elements will stay in their place as explained below. 
