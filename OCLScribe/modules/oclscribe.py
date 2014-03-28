@@ -1,5 +1,5 @@
 #===================================================================================
-# oclscribe_interface
+# oclscribe
 #
 # This module provides the interface for the OCLScribe macros
 # Currently there is only one macro:
@@ -118,7 +118,7 @@ def compileSelectedElements(selectedElements):
 #---------------------------------------------------------------------------
 #  Macro definition
 #---------------------------------------------------------------------------
-def do_generate_ocl(selectedElements): 
+def macro_generate_ocl(selectedElements,directories): 
   if (selectedElements.size() > 0):
     toDisplay = compileSelectedElements(selectedElements)
     USEWindow(title = "USE Generation", toDisplay = toDisplay)
