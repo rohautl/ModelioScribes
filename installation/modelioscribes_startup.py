@@ -66,35 +66,38 @@ def _addModulesDirectoriesToPath(home):
     if os.path.isdir(modulepath):
       _addDirectoryToPath(modulepath)
 
-def loadModule(modulename,reload=False):
-  """ Load or reload a module if the second parameter is true
+def loadModule(modulenames,reload=False):
+  """ Load or reload a (list of) module(s) if the second parameter is true.
+      - modulenames is either a string or a list of string.
+      - reload the module if the reload parameter is true
   """
-  if reload or (modulename not in sys.module):
-    try: 
-      del sys.modules[modulename]
-      exec( "del "+modulename )
-    except:pass
-  exec( "import "+modulename )
+  if  isinstance(modulenames, basestring):
+    modulenames = [ modulenames ]
+  for modulename in modulenames:    
+    notLoaded = modulename not in sys.modules
+    if reload or notLoaded:
+      try: 
+        del sys.modules[modulename]
+        exec( "del "+modulename )
+      except:pass
+    exec( "import "+modulename )
   
 
 def scribeStartup(scribename,functionname,selectedElements,reload=False):
   modulename = scribename.lower()
   loadModule(modulename,reload)
-  exec( "import "+modulename+ " ; "+modulename+"."+functionname+"(selectedElements)" )
+  directories = {}
+  directories['home'] = HOME
+  directories['scribe'] = os.path.join(HOME,scribename)
+  directories['res'] = os.path.join(directories['scribe'],'res')
+  exec( "import "+modulename+ " ; "+modulename+"."+functionname+"(selectedElements,directories)" )
   
     
 HOME = _getHome()
 if HOME is not None:
   _addModulesDirectoriesToPath(HOME)
   
-#---- check if this is the first time this macro is loaded or not  
-# try:
-#  MODELIO_SCRIBES_INITIALIZED += 1
-#  # this is the not the first time
-#except:
-#  # this is the first time
-#  MODELIO_SCRIBES_INITIALIZED = 1
-#  print "First execution of modelioscribes"
+
 
 
 
