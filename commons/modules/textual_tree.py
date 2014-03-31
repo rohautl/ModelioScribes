@@ -72,31 +72,34 @@ class TextualTree(Tree):
     else:
       return None
   def addLine(self,lineNumber,indent,comment,headline):
-    print "addLine("+str(indent)+headline+")"
+    # print "addLine("+str(indent)+headline+")"
     lastNode = self.getLastNode()
-    print "indent is ",indent
+    # print "indent is ",indent
     if indent==lastNode.getIndent():
       # same level as the last node
       parent = lastNode.getParent()
-      print "  same level as "+("root" if parent.headline is None else parent.headline)
+      # print "  same level as "+("root" if parent.headline is None else parent.headline)
     elif indent > lastNode.getIndent():
       # this is a new nesting
       parent = lastNode
-      print "  nested level in "+("root" if parent.headline is None else parent.headline)
+      # print "  nested level in "+("root" if parent.headline is None else parent.headline)
     else:
       # search in previous open nestings
       sameLevelNode = self.searchTree(indent)
       if sameLevelNode is None:
         print "***error*** cannot find node with nesting "+str(indent)
       parent = sameLevelNode.getParent()
-      print "  previous nesting, added in "+("root" if parent.headline is None else parent.headline)
+      # print "  previous nesting, added in "+("root" if parent.headline is None else parent.headline)
     node = TextualTree(lineNumber,indent,comment,headline,[],parent)
     parent.children += [node]
   def text(self):
     if self.headline is None or self.indent is None:
       out = ""
     else:
-      out  = self.comment  +"\n"
+      if self.comment is None or self.comment == "":
+        out = ""
+      else:
+        self.comment+"\n"
       out += (" "*self.indent) + self.headline+"\n"
     for child in self.children:
       out += child.text() 
@@ -111,7 +114,13 @@ class TextualTree(Tree):
     return out
   
 class TextualTreeReader(object):
-  def __init__(self,lines):
+  def __init__(self,linesOrFilename):
+    """ Create the tree from a file or a list of lines.
+    """
+    if isinstance(linesOrFilename,basestring):
+      lines = [line.strip("\n") for line in open(linesOrFilename)]
+    else:
+      lines = linesOrFilename
     self.rawLines = lines
     self.structuredLines = None
   def _getStructuredLines(self):
@@ -173,3 +182,4 @@ class TextualTreeReader(object):
       tree.addLine(-1,indent,comment,headline)
     return tree  
     
+print "module textual_tree loaded from",__file__
