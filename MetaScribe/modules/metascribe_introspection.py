@@ -99,8 +99,8 @@ except:
   orgVersion = False
 from org.eclipse.core.runtime import IAdaptable
 from misc import reject,excluding,exists,isEmpty,notEmpty,isList,forAll,isString
-from misc import HtmlWindow,TreeWindow,ImageProvider
-from misc import getWebPage
+from gui import HtmlWindow,TreeWindow,ImageProvider
+from gui import getWebPage
 
 
 
