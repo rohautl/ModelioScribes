@@ -12,7 +12,7 @@ def _getWorkspaceMacrosDirectory():
   return os.path.join(workspace,'macros')
   
   
-def _getHome():
+def getHome():
   """ Find the location of ModelioScribes directory. 
       (1) check first the environment variable SCRIBE_HOME.
       (2) If this variable is not set, then search this directory in the "macros"
@@ -45,6 +45,11 @@ def _getHome():
       print "Check your operating system documentation to see how to set an"
       print "an environment variable."
       return None
+      
+def getScribeDirectory(scribename,relativePath=[]):
+  scribehome = os.path.join(HOME,scribename)
+  return os.path.join(scribehome,relativePath)
+  
 
 def _addDirectoryToPath(directory):
   """ Add the directory to the system path if it does not exist already.
@@ -83,17 +88,19 @@ def loadModule(modulenames,reload=False):
     exec( "import "+modulename )
   
 
-def scribeStartup(scribename,functionname,selectedElements,reload=False):
+def scribeStartup(scribename,functionname,selectedElements,modules,reload=False):
   modulename = scribename.lower()
-  loadModule(modulename,reload)
+  if modulename not in modules:
+    modules = modules + [modulename]
+  loadModule(modules,reload)
   directories = {}
   directories['home'] = HOME
-  directories['scribe'] = os.path.join(HOME,scribename)
-  directories['res'] = os.path.join(directories['scribe'],'res')
+  directories['scribe'] = getScribeDirectory(scribename)
+  directories['res'] = getScribeDirectory(scribename,['res'])
   exec( "import "+modulename+ " ; "+modulename+"."+functionname+"(selectedElements,directories)" )
   
     
-HOME = _getHome()
+HOME = getHome()
 if HOME is not None:
   _addModulesDirectoriesToPath(HOME)
   
