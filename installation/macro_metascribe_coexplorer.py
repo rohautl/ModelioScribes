@@ -5,8 +5,8 @@ WORKSPACE_DIRECTORY=Modelio.getInstance().getContext().getWorkspacePath().toStri
 execfile(os.path.join(WORKSPACE_DIRECTORY,'macros','modelioscribes_startup.py'))
 #===================================================================================
 
-loadModule(["misc","metascribe_introspection","metascribe"],DEBUG)
-scribeStartup('MetaScribe',"macro_coexplorer",selectedElements,True)
+MODULES=["misc","metascribe_introspection","metascribe"]
+scribeStartup('MetaScribe',"macro_coexplorer",selectedElements,MODULES,DEBUG)
 
   
 
