@@ -1,3 +1,13 @@
-*.class
-~*.pptx
-PRIVATE/**
+docs/*/_build
+docs/_build
+libs/*
+_ATTIC
+
+# Python / Jython
+
+*$py.class
+*.py[cod]
+__pycache__/
+
+# PyCharm
+.idea/
