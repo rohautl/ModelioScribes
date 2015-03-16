@@ -1,37 +1,58 @@
 SQLScribe
 =========
-This script allows the generation of SQL from class models and the other way around the reverse engineering of class models from a database. The reverse engineering part is based on the SchemaSpy open source tool.
+This script allows the generation of SQL from class models and the other way around the reverse engineering of class models from a database. As shown below the reverse engineering part is based on the SchemaSpy open source tool.
+
+.. figure:: media/overview.jpg
+    :align: center
+
+    Overview of SQLScribe
 
 Three levels of abstration are supported:
-* Data model: at this level classes are representing persistent entities. Associations and inheritance  are used to model the relationhips between these entities.
-* Relational model: this level based on "SQL" profile desribe tables with stereotype classes. This level introduce the notion ok primary key and foreign keys are represented by dependencies between columns.
-* SQL Implementation: this level corresponds to the SQL implementation.
 
-SQL Reverse Engineering (SQLScribeRev)
---------------------------------------
-### Principles
+* **Data model**: at this level classes are representing persistent entities. Associations and inheritance  are used to model the relationhips between these entities.
+
+* **Relational model**: this level based on "SQL" profile desribe tables with stereotype classes. This level introduce the notion ok primary key and foreign keys are represented by dependencies between columns.
+
+* **SQL Implementation**: this level corresponds to the SQL implementation.
+
+Reverse Engineering
+-------------------
+
+Principles
+^^^^^^^^^^
+
 * from database to modelio "relational model"
- * based on SchemaSpy (http://schemaspy.sourceforge.net)
- * reading the xml file produced by SchemaSpy into modelio thanks to ElementTree library
 
-### Tests
+    * based on SchemaSpy (http://schemaspy.sourceforge.net)
+    * reading the xml file produced by SchemaSpy into modelio thanks to ElementTree library
+
+Tests
+^^^^^
+
 Test cases
-* "library" example from SchemaSpy
- * Source file directly available from  http://schemaspy.sourceforge.net/sample/library.xml
- * Output that should be generated provided as an exemple in CyberBibliotheque project
-* simple atomic examples
- * one example per features, e.g.
-   * two empty tables,
-   * two tables with columns and keys,
-   * two tables with a foreign key constraints
-   * ...
- * both source file (database then .xml or just .xml) and modelio output should be built
-* other tests cases to be build
- * open source components with database (e.g. mediawiki, joomla, fusionforge, ...)
- * (1) reverse the database with SchemaSpy to produce a .xml
- * (2) test the SQLScribeRev reverse engineering tool
 
-The following example corresponds to a (subset) of the library example:
+* "library" example from SchemaSpy
+
+    * Source file directly available from  http://schemaspy.sourceforge.net/sample/library.xml
+    * Output that should be generated provided as an exemple in CyberBibliotheque project
+
+* simple atomic examples
+
+    * one example per features, e.g.
+    * two empty tables,
+    * two tables with columns and keys,
+    * two tables with a foreign key constraints
+    * ...
+
+* both source file (database then .xml or just .xml) and modelio output should be built
+
+* other tests cases to be build
+
+    * open source components with database (e.g. mediawiki, joomla, fusionforge, ...)
+    * (1) reverse the database with SchemaSpy to produce a .xml
+    * (2) test the SQLScribeRev reverse engineering tool
+
+The following example corresponds to a (subset) of the library example::
 
       <database name="library" type="MySQL - 5.1.35-community">
         <tables>
@@ -68,10 +89,6 @@ The following example corresponds to a (subset) of the library example:
 Relational Profile
 ------------------
 Definition of an relational profile within the local module
-* initialisation
- * if the stereotype are not existing creating them
- * get the corresponding stereotype for further use
-
 
 
 SQL Forward Engineering

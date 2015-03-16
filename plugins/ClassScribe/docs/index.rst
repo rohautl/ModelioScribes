@@ -3,7 +3,9 @@ ClassScribe
 This script aims to simplify the input of class models in Modelio. The "import" operation transforms a text written in simple notation into class elements (classes, attributes, operations, notes, inheritance hierarchies, etc.). On the other way around the "export" operation consists in generating textual representations from an existing model.
 
 Different notations are actually provided by ClassScribe. Each notation suits different purposes:
+
 * Simple Class Notation (SCN): this notation is used to create/modify nested structures of classes, attributes, roles, operations and notes.
+
 * Simple Inheritance Notation (SIN): this notation used nesting to represent hierarchies of classes or interfaces.
 
 Import and export operations
@@ -16,15 +18,18 @@ The export operation generates a file in the textual notation. During the export
 SCN Notation
 ------------
 
-### Context and nesting
+Context and nesting
+^^^^^^^^^^^^^^^^^^^
 The elements created are always created into container element called referred as the "context". The context defines which (nested) elements can be created in it. For instance in the context of a package, classes can be created just by giving the list of names. In the context of a class, one can attributes, operations and roles. If only names are given it is assumed that attributes are to be created. Otherwise the syntax of the line differs in order to indicate which kind of elements is to be created. For instance the name of an operation will be followed by "()".
 
 The "root context" corresponds to the first selected elements of modelio. Toplevel elements in the textual notation are going to be created there. Nesting in the notation then indicates the context of each element to be created. The root context can be of different types indicating the type of the elements to be created on the top level. For instance if the import operation is applied on a package then a list of names at the top level will be interpreted as a list of class, but if the import operation is applied on a class, then the list of names at the top level will be interpreted as attributes.
 
-### SCN Commands
+SCN Commands
+^^^^^^^^^^^^
 The syntax of the SUCN notation is based on simple line commands that are nested. Each line is therefore interpreted in a given context. See the examples below for concrete illustrations of the syntax.
 
 The general conventions are the following ones:
+
 * Blank lines are ignored.
 * Nesting is done via two spaces.
 * Lines starting with "--" are comments .
@@ -32,6 +37,7 @@ The general conventions are the following ones:
 * If a name of an element appears for the first time in the text and it does not exist in the model, then the element is created. Otherwise the element is modified. If an uuid is indicated for an element, then the search is based on this uuid instead of its name. Note that elements with uuid stay in their place and are never moved by this script.
 
 The syntax of the SCN notation is line-based, identation based but each line can be specified as shown below. The following conventions are taken:
+
 * \<X> introduce a non terminal symbols
 * "..." are terminal symbols
 * ( ... ) define groups of elements
@@ -40,7 +46,7 @@ The syntax of the SCN notation is line-based, identation based but each line can
 * ...+ represents a repetition of one or more elements
 * -- are comments
 
-In the context of a **package**, classes or enumerations can be created as following:
+In the context of a **package**, classes or enumerations can be created as following::
 
       <DefineClass>           ::= <Stereotype>* <Abstract>? <Name>
           -- Creates/modify the class <Name>
@@ -50,12 +56,12 @@ In the context of a **package**, classes or enumerations can be created as follo
       <DefineEnumeration>     ::= <Stereotype>* "e" <Name>
           -- Creates/modify an enumeration
 
-In the context of an **enumeration**, enumeration literals can be created as following:
+In the context of an **enumeration**, enumeration literals can be created as following::
 
       <DefineEnumerationLiteral> ::= <Stereotype>* <Name>
           -- Creates/modify an enumeration literal
 
-In the context of a **class**, attributes, operations or roles can be created as following:
+In the context of a **class**, attributes, operations or roles can be created as following::
 
       <DefineAttribute> ::= <Stereotype>* <Derived>? <Visibility>? <Name> (":" <TypeSpec>)?
           -- Creates/modify an attribute
@@ -64,71 +70,72 @@ In the context of a **class**, attributes, operations or roles can be created as
       <DefineRole>      ::= <Stereotype>* <Derived>? <Visibility>? <RoleSpec>
           -- Creates/modify a role
 
-In the context of an **operation**, parameters can be defined as following:
+In the context of an **operation**, parameters can be defined as following::
 
       <DefineParameter> ::= <Stereotype>* <Name> ":" <ParameterType>?
           -- Create/modify a parameter
 
-The definitions above are based on the following elements:
+The definitions above are based on the following elements::
 
-      <RoleSpec>        ::= (<RoleKind>)? <Name> ":" <Name> <Cardinality>? ("inv" <Name> <Cardinality>?)?
-          -- The first name is the name of the "source" role to be created or modified in the current class.
-          -- The second name is the name of the target class. The third name if it exists is the name of
-          -- the "inverse" role in this target class.
-          -- TODO. This specification should be refined to explain what happen if the role already exists.
+          <RoleSpec>        ::= (<RoleKind>)? <Name> ":" <Name> <Cardinality>? ("inv" <Name> <Cardinality>?)?
+              -- The first name is the name of the "source" role to be created or modified in the current class.
+              -- The second name is the name of the target class. The third name if it exists is the name of
+              -- the "inverse" role in this target class.
+              -- TODO. This specification should be refined to explain what happen if the role already exists.
 
-      <Composition>     ::= "<#>"
-      <Aggregation>     ::= "<>"
+          <Composition>     ::= "<#>"
+          <Aggregation>     ::= "<>"
 
-      <TypeSpec>        ::= <TypeName> <Cardinality>?
-          -- If not specified the cardinality is set to [1]
+          <TypeSpec>        ::= <TypeName> <Cardinality>?
+              -- If not specified the cardinality is set to [1]
 
-      <Cardinality>     ::= "[*]" | "[" <Integer> ".." <Integer> "]" | "[" <Integer> ".." "*" ]
+          <Cardinality>     ::= "[*]" | "[" <Integer> ".." <Integer> "]" | "[" <Integer> ".." "*" ]
 
-      <TypeName>        ::= <BasicType> | <Name>  -- an error is generated if
-          -- The type name must already exist in the model. Otherwise an error is generated.
+          <TypeName>        ::= <BasicType> | <Name>  -- an error is generated if
+              -- The type name must already exist in the model. Otherwise an error is generated.
 
-      <BasicType>       ::= "integer" | "i"       -- i is a shortcut
-                          | "float"   | "f"       -- f is a shortcut
-                          | "boolean" | "b"       -- b is a shortcut
-                          | "date"    | "d"       -- d is a shortcut
-                          | "string"  | "s"       -- default if no type is defined yet for the element
+          <BasicType>       ::= "integer" | "i"       -- i is a shortcut
+                              | "float"   | "f"       -- f is a shortcut
+                              | "boolean" | "b"       -- b is a shortcut
+                              | "date"    | "d"       -- d is a shortcut
+                              | "string"  | "s"       -- default if no type is defined yet for the element
 
-      <Abstract>        ::= "a" | "abstract"
+          <Abstract>        ::= "a" | "abstract"
 
-      <Derived>         ::= "/"
+          <Derived>         ::= "/"
 
-      <Visibility>      ::= "+"                   -- public
-                          | "~"                   -- package
-                          | "#"                   -- protected
-                          | "-"                   -- private
+          <Visibility>      ::= "+"                   -- public
+                              | "~"                   -- package
+                              | "#"                   -- protected
+                              | "-"                   -- private
 
-      <Name>            ::=   -- a non empty sequence of letters, digits, "_" without any space
-      <Stereotype>      ::=   -- like <Name> but with enclosed in "<" and ">"
+          <Name>            ::=   -- a non empty sequence of letters, digits, "_" without any space
+          <Stereotype>      ::=   -- like <Name> but with enclosed in "<" and ">"
 
 
-### SCN Examples
+SCN Examples
+^^^^^^^^^^^^
 The following example provides a complete view of the various possibilities of the "structure" notation. Note that this example is not really realistics:
 * most of the time only a few of the possibilities will be used
 * usually the same level of notation will be used for all elements, for instance specifying only the name and the visibility and the type.
 
-Here is a first example:
+Here is a first example::
 
-    Employee
-      salary : i [0..1]
-    Student < organization.Person, university.Stakeholder
-      firstName
-      lastName : s
-        S: This is a "summary" note (because it startswith #s:)
-        D: Here this is a multi line description
-         : with multiple line as expected. They are contactenated
-         : together. So there are three lines in total.
-        D: Now this another "description" note
-      +middleName : string [0..1]
-      birthDate:d
-      <PK> nationalId
-      / +age: i
-      registeredCourses : Course [*] inv registeredStudents
+        Employee
+          salary : i [0..1]
+        Student < organization.Person, university.Stakeholder
+          firstName
+          lastName : s
+            S: This is a "summary" note (because it startswith #s:)
+            D: Here this is a multi line description
+             : with multiple line as expected. They are contactenated
+             : together. So there are three lines in total.
+            D: Now this another "description" note
+          +middleName : string [0..1]
+          birthDate:d
+          <PK> nationalId
+          / +age: i
+          registeredCourses : Course [*] inv registeredStudents
 
 
 The examples below illustrate the use of the notation in different contexts.
@@ -140,25 +147,26 @@ SCIN Notation
 -------------
 Sometimes it is convenient to create hierarchies of classes and interfaces
 
-Specification: TODO
+Specification (TODO)::
 
-    Person
-      Men
-      Women
-      Professor
-      Student a
-        FirstYearStudent
-        MasterStudent
-    Serializable i
-      Person
-      Women
-    Serializable i
-      Interface1 i
-        AbstracClass1 a
-      Interface2
-        AbstractClass2 a
+        Person
+          Men
+          Women
+          Professor
+          Student a
+            FirstYearStudent
+            MasterStudent
+        Serializable i
+          Person
+          Women
+        Serializable i
+          Interface1 i
+            AbstracClass1 a
+          Interface2
+            AbstractClass2 a
 
-Hints
+Hints:
+
 * "i" stands for "interface"
 * "a" stands for "abstract"
 
@@ -167,8 +175,11 @@ User interface
 The user interface provides three "commands": one interactive command and two file-based commands:
 
 * **Import class model**. This command must be launched on a selected package or class and a file name in the SCN notation must be specified. The notion of "selection" refers here to modelio selection. Elements are read form the file. The selected element is the place where new elements are going to be created.
+
 * **Export class model**. This command generates a file for all class model elements that are (recursively) in the selected element. The output file name should be specified.
+
 * **Edit class model**. This command open a input window for interactive usage of the SCN notation.
+
   * The "Clear" button clears the text in the window.
   * The "Import selection" button replaces the content of the text with the content of the selected element (this the interactive application of the import command).
   * The "Apply" button takes the content of the window and apply the changes. This is the interactive version of the export use cases.
