@@ -13,6 +13,7 @@ SUCN Notation
 The syntax of the SUCN notation is based on simple line commands that are nested. Each line is therefore interpreted in a given context. See the examples below for concrete illustrations of the syntax.
 
 The general conventions are the following ones:
+
 * Blank lines are ignored.
 * Nesting is done via two spaces.
 * Lines starting with "--" are comments.
@@ -20,21 +21,28 @@ The general conventions are the following ones:
 * If a name of an element appears for the first time in the text and it does not exist in the model, then the element is created. Otherwise the element is modified. If an uuid is indicated for an element, then the search is based on this uuid instead of its name. Note that elements with uuid stay in their place and are never moved by this script.
 
 The notation is based on nesting of simple line commands (a name is specified for each command below for futher reference in specification or implementation artefacts).  The accepted commands are the following:
-* At the **top-level**:
-  * **NameA** (*DefineActor*) : Create/modify an actor.
-  * **NameA \< NameB** (*DefineActorInheritance*) : Create/modify an actor NameA inheriting from an actor NameB. Actors are created or reused.
-  * **NameA1 NameA2 ... NameAn - NameCU** (*DefineUseCase*): Create/modify a use case and associate it with the corresponding actors. Actors are created or reused. Association between actors and use cases are merged with previous ones if already existing.
+
+* At the ``top-level**:
+
+  * ``NameA`` (*DefineActor*) : Create/modify an actor.
+  * ``NameA \< NameB`` (*DefineActorInheritance*) : Create/modify an actor NameA inheriting from an actor NameB. Actors are created or reused.
+  * ``NameA1 NameA2 ... NameAn - NameCU`` (*DefineUseCase*): Create/modify a use case and associate it with the corresponding actors. Actors are created or reused. Association between actors and use cases are merged with previous ones if already existing.
+
 * In the context of **use cases**:
-  * **NameC** (*DefineCollaboration*): Create/modify a collaboration named NameC
-  * **t-> NameC** (*DefineTraceability*): Create a traceability (hence "t->") dependency towards the model element NameC if it exist. The element is first search in the "analyst project", and then in the "uml project".If this model element does not exist or various element with the same name exists, then a warning is issued but the process is not stopped.
+
+  * ``NameC`` (*DefineCollaboration*): Create/modify a collaboration named NameC
+  * ``t-> NameC`` (*DefineTraceability*): Create a traceability (hence "t->") dependency towards the model element NameC if it exist. The element is first search in the "analyst project", and then in the "uml project".If this model element does not exist or various element with the same name exists, then a warning is issued but the process is not stopped.
+
 * In the context of **actors**, **use cases** or **collaborations**:
-  * **#s SomeText** (*DefineSummary*): Create/modify the "summary" note. If an uuid is specified, then the note is identified and its content is changed with the text provided. Otherwise as it is important to avoid creating multiple descriptions each time the model is imported, it is assumed that the definition to be modified is the first one if any and in this case its content is replaced by the text provided.
-  * **#d" SomeText** (*DefineDescription*): Create/modify the "description" note. The behavior is analogous to the one described for summary notes.
-  * **"  SomeText** (*DefineAdditionalText*): Append a text to the previous note. Note that a space should follow the '"' character.
+
+  * ``#s SomeText`` (*DefineSummary*): Create/modify the "summary" note. If an uuid is specified, then the note is identified and its content is changed with the text provided. Otherwise as it is important to avoid creating multiple descriptions each time the model is imported, it is assumed that the definition to be modified is the first one if any and in this case its content is replaced by the text provided.
+  * ``#d" SomeText`` (*DefineDescription*): Create/modify the "description" note. The behavior is analogous to the one described for summary notes.
+  * ``"  SomeText`` (*DefineAdditionalText*): Append a text to the previous note. Note that a space should follow the '"' character.
 
 SUCN Examples
---------------
-Here is an example of SUCN text that can be used to create a blank model:
+-------------
+
+Here is an example of SUCN text that can be used to create a blank model::
 
     -- this is an example of comment
     Actor5
@@ -82,8 +90,11 @@ The user interface  provides three "commands": one interactive command and file-
 * **Import use case model**. This command must be launched on a selected package and a file name in the SUCN notation must be specified. The notion of "selection" refers here to modelio selection. Elements are read form the file. The selected package will be the place where new elements are going to be created. Existing elements will stay in their place as explained below.
 * **Export use case model**. This command generates a file for all actors, use cases and collaborations that are (recursively) in the selected package or if no package is selected that are in the UML project. The output file name should be specified.
 * **Edit use case model**. This command open a input window for interactive usage of the SUCN notation.
+
   * The "Clear" button clears the text in the window.
   * The "Import selection" button replaces the content of the text with the content of the selected element (this the interactive application of the import command).
   * The "Apply" button takes the content of the window and apply the changes. This is the interactive version of the export use cases.
 
-IMPORTANT NOTE: It is assumed that actors and use cases names are global (this hypothesis is valid for this use case of model). So if existing actors or use cases have already the same names as the ones found in the model (or the same uuid if any) during an import, then these entities will be modified in the place wherever they are. This avoid package qualification which could be quite cumbersome in practice in use case models. It is still possible to create sophisticated structures if needed by first importing use cases and actors in a blank model, then creating various packages and moving elements in these packages. When the elements will be imported again, they will stay in the same package (except newly created elements that will go into the "selected" package).
+.. note::
+
+    It is assumed that actors and use cases names are global (this hypothesis is valid for this use case of model). So if existing actors or use cases have already the same names as the ones found in the model (or the same uuid if any) during an import, then these entities will be modified in the place wherever they are. This avoid package qualification which could be quite cumbersome in practice in use case models. It is still possible to create sophisticated structures if needed by first importing use cases and actors in a blank model, then creating various packages and moving elements in these packages. When the elements will be imported again, they will stay in the same package (except newly created elements that will go into the "selected" package).

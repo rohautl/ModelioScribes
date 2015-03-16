@@ -8,8 +8,10 @@ ModelioScribes
 
 
     AuditScribe
-    ClassScribe
     SQLScribe
+    ClassScribe
+    UseCaseScribe
+
 
 Indices and tables
 ==================
