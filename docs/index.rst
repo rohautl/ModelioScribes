@@ -9,6 +9,7 @@ ModelioScribes
 
     AuditScribe
     SQLScribe
+    ParaScribe
     ClassScribe
     UseCaseScribe
 
