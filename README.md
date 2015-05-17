@@ -26,6 +26,7 @@ Une classe est composée d’attributs, de méthodes, d’associations et d’h�
 |* |Un(e) {nom classe} peut ne pas avoir de {nom rôle associé}. Un(e) {nom classe} peut avoir plusieurs {nom rôle associé} |
 |1 |Un(e) {nom classe} a toujours 1 {nom role associé} |
 |Entier N | Un(e) {bom classe} peut avoir au plus N {nom rôle associé} |
+|1..* |Un(e) {nom classe} {nom association} un ou des {nom classe associée} |
 
 #Utilisation
 Il est possible de créer une macro utilisant le code que nous avons crée.
