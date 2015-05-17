@@ -27,6 +27,9 @@ Une classe est composée d’attributs, de méthodes, d’associations et d’h�
 |1 |Un(e) {nom classe} a toujours 1 {nom role associé} |
 |Entier N | Un(e) {bom classe} peut avoir au plus N {nom rôle associé} |
 
-
+#Utilisation
+Il est possible de créer une macro utilisant le code que nous avons crée.
+Pour utiliser ce code, il faut sélectionner chaque classe que l'on désire traduire en langage clair. Il est possible de sélectionner une ou plusieures classes.
+Il suffit ensuite de lancer la macro (ou d'éxécuter directement le code via la vue script".
 
 
