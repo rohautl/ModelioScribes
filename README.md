@@ -17,7 +17,12 @@ Une classe est composée d’attributs, de méthodes, d’associations et d’h�
 |--------------------------------------------------|------------------------------------------------|---------------------|
 | Attribut                                         | Le {nom attribut} de {nom classe} est un {type attribut}                             | Le name de Residence est un string            |
 | Méthode                                          | Pour un(e) {nom classe} donne il est possible de : (-{nom méthode} )*         | Pour un(e) Residence donne il est possible de : -bedrooms -usefulBedrooms -bathrooms  |
-| Association                                      | Un(e) {nom classe} {nom association} {type association} {nom classe associée} l L'élément {nom rôle} de {nom association} est un  {nom classe associée}                                 |
+| Association                                      | 
+Un(e) {nom classe} {nom association} {type association} {nom classe associée}
+L’élément {nom rôle associée} de {nom association} est un {nom classe associée}
+L’élément {rôle association} de {nom association} est un {nom classe}
+                                 |
 | Héritage                                         | {nom classe} est aussi un(e): (-un(e) {nomclasse mère})*                             |
+
 
 
