@@ -33,4 +33,4 @@ Il est possible de créer une macro utilisant le code que nous avons crée.
 Pour utiliser ce code, il faut sélectionner chaque classe que l'on désire traduire en langage clair. Il est possible de sélectionner une ou plusieures classes.
 Il suffit ensuite de lancer la macro (ou d'éxécuter directement le code via la vue script".
 
-
+Le fichier contenant la macro est : ModelioScribes/plugins/ParaScribe/parascribe/gen-paraphrase.py
